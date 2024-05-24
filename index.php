@@ -10,7 +10,7 @@ if ($text == "") {
     // This is the first request. Note how we start the response with CON
     $response  = "CON What brings you here \n";
     $response .= "1. My Account \n";
-    $response .= "2. make Payment";
+    $response .= "2. Make Payment";
 
 } else if ($text == "1") {
     // Business logic for first level response
