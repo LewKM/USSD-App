@@ -12,3 +12,12 @@ file_put_contents($logFile, $data);
 $log = fopen($logFile, 'a');
 fwrite($log, $stkCallbackResponse);
 fclose($log);
+
+$stkCallbackResponse = json_decode($stkCallbackResponse);
+
+$ResultCode = $stkCallbackResponse->Body->stkCallback->ResultCode;
+$CheckoutRequestID = $stkCallbackResponse->Body->stkCallback->CheckoutRequestID;
+$Amount = $stkCallbackResponse->Body->stkCallback->CallbackMetadata->Item[0]->Value;
+$MpesaReceiptNumber = $stkCallbackResponse->Body->stkCallback->CallbackMetadata->Item[1]->Value;
+$PhoneNumber = $stkCallbackResponse->Body->stkCallback->CallbackMetadata->Item[2]->Value;
+$ExternalReference = $stkCallbackResponse->Body->stkCallback->CallbackMetadata->Item[3]->Value;
