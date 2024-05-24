@@ -19,7 +19,7 @@ $ResultCode = $stkCallbackResponse->Body->stkCallback->ResultCode;
 $CheckoutRequestID = $stkCallbackResponse->Body->stkCallback->CheckoutRequestID;
 $Amount = $stkCallbackResponse->Body->stkCallback->CallbackMetadata->Item[0]->Value;
 $MpesaReceiptNumber = $stkCallbackResponse->Body->stkCallback->CallbackMetadata->Item[1]->Value;
-$PhoneNumber = $stkCallbackResponse->Body->stkCallback->CallbackMetadata->Item[2]->Value;
+$PhoneNumber  = $stkCallbackResponse->Body->stkCallback->CallbackMetadata->Item[2]->Value;
 $ExternalReference = $stkCallbackResponse->Body->stkCallback->CallbackMetadata->Item[3]->Value;
 
 
@@ -27,11 +27,11 @@ if ($ResultCode == 0) {
 
     include "conn.php";
 
-    $sql = "INSERT INTO payments (Amount, MpesaReceiptNumber, PhoneNumber, ExternalReference) VALUES ('$Amount', '$MpesaReceiptNumber', '$PhoneNumber', '$ExternalReference')";
+    $sql = "INSERT INTO payments (CheckoutRequestID, Amount, MpesaReceiptNumber, PhoneNumber) VALUES ('$Amount', '$MpesaReceiptNumber', '$PhoneNumber')";
     $result = $conn->query($sql);
 
     $conn = null;
-    
+
     $data = json_encode(array(
         'ResultCode' => $ResultCode,
         'CheckoutRequestID' => $CheckoutRequestID,
