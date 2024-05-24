@@ -4,6 +4,7 @@ $sessionId   = $_POST["sessionId"];
 $serviceCode = $_POST["serviceCode"];
 $phoneNumber = $_POST["phoneNumber"];
 $text        = $_POST["text"];
+include "functions.php";
 
 if ($text == "") {
     // This is the first request. Note how we start the response with CON
@@ -19,7 +20,9 @@ if ($text == "") {
 } else if ($text == "2") {
     // Business logic for first level response
     // This is a terminal request. Note how we start the response with END
-    $response = "END Your phone number is ".$phoneNumber;
+    // Make function calling here
+    $response = makePayment($amount, $phoneNumber, $sessionId);
+
 
 } else if($text == "1*1") { 
     // This is a second level response where the user selected 1 in the first instance
