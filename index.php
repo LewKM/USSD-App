@@ -21,8 +21,10 @@ if ($text == "") {
     // Business logic for first level response
     // This is a terminal request. Note how we start the response with END
     // Make function calling here
+    $amount = '2';
     $response = makePayment($amount, $phoneNumber, $sessionId);
 
+    $response .= "END Your payment has been made successfully"; 
 
 } else if($text == "1*1") { 
     // This is a second level response where the user selected 1 in the first instance
